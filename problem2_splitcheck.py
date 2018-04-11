@@ -254,8 +254,8 @@ def validation_curve():
                 correct+=1
             count+=1
         correctTotal.append([i,correct/count])
-        plt.scatter(correctTotal)
-        plt.show()
+    plt.scatter(correctTotal)
+    plt.show()
     return correctTotal
         
                 
