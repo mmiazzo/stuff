@@ -65,7 +65,7 @@ class Split(object):
         parentEntropy=parentOutcomes.apply(lambda x:-x*math.log(x,2)).sum()
 
         attrVals=set(self.data[self.split_column])
-        if attrVals=={0,1}:
+        if attrVals=={0,1} or attrVals=={0} or attrVals=={1}:
             thisEntropy=[]
             data=self.data
             curMin=[0,100000]
