@@ -36,7 +36,6 @@ class Node(object):
         if self.node_type=='leaf':
             for row in test.index:
                 mappings[row]=self.label
-            print("rows: "+str(list(test.index))+ "  will have value " + str(self.label))
         else:
             nodeTest=self.split
             splitCol=nodeTest.split_column
@@ -238,7 +237,7 @@ def validation_curve():
     correctTotal=[]
 
     for i in range(1,20,2): 
-        print("current on " + str(i) + "of 20")
+        print("currently on " + str(i) + " of 20")
         correct=0
         count=0
         randomSet=df.sample(frac=1) #randomize order
@@ -248,12 +247,15 @@ def validation_curve():
         trainSet=testSet.tail(2*oneThird-1)
         thisTree=DecisionTree(i)
         thisTree.fit(trainSet,279)
+        print("Decision tree built!  testing...")
         results=thisTree.predict(testSet)
         for thisRow in results:
             if results[thisRow]==testSet.get_value(thisRow,279):
                 correct+=1
             count+=1
         correctTotal.append([i,correct/count])
+        plt.scatter(correctTotal)
+        plt.show()
     return correctTotal
         
                 
