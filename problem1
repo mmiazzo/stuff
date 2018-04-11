@@ -1,0 +1,56 @@
+def DecisionTreeLearning(examples,attributes,parent_examples):
+    if len(examples) == 0:
+        return PluralityValue(parent_examples)
+    elif len(set(examples.classification)) == 1:
+        return examples[0].classification
+    elif len(attributes) == 0
+        return PluralityValue(examples)
+    else:
+        A=max(Importance(attributes,examples))
+        tree=newTree
+        for thisAttr in A:
+            exs=[e for e in examples if e.A==thisAttr]
+            subTree=DecisionTreeLearning(ex,attributes-A,examples)
+            tree.addBranch(thisAttr,subtree=subTree)
+        return Tree
+
+    
+def Importance(attributes,examples):
+    for 
+
+def ContImportance(attribute,examples):
+    attrVals = sorted(examples.attribute) # get a sorted list of the attribute in the examples
+    splits = [] # a list of potential splits 
+    gini=[] #a list of gini indices corresponding to each split point
+    num=len(examples)
+
+    splits.append(attrVals[0]-5) #at smallest split all values shouldbe greater than the split point
+    
+    for i in range(len(attrVals)-1): #build in-between splits.  O(N) where N is number of examples
+        splits.append((attrVals[i]+attrVals[i+1])/2)
+    splits.append[attrVals[i+1]+5] # at largest split all values should be less than the split point
+    
+    ltSplit = []
+    gtSplit = examples
+    for thisSplit in range(len(splits)):
+        ltSplit=ltSplit.extend([e for e in gtSplit if e.attribute<=splits[thisSplit]]) #add values to ltSplit from gtSplit when they are less than the split
+        gtSplit=[e for e in gtSplit if e not in ltSplit]
+        
+        ltWeight=len(ltSplit)/num #determine weight for each side of the split
+        gtWeight=len(rtSplit)/num
+        
+        if len(ltSplit != 0): #determine proportion less than split classified as Yes
+            ltYes=len([e for e in ltSplit if e.classification==True])/len(ltSplit) #determine proportion of elements 
+        else: 
+            ltYes=0
+        ltNo=(num-ltYes)
+        
+        if len(gtSplit != 0): #determine proportion greater than split classified as Yes
+            gtYes=len([e for e in gtSplit if e.classification==True])/len(rtSplit)
+        else:
+            gtYes=0
+        gtNo=(num-gtNo)
+
+        gini.append(ltWeight*(1-ltYes**2-ltNo**2)+gtWeight*(1-grYes**2-gtNo**2)) # determine Gini index, add to list as the gini index for this split
+        return splits[gini.index(min(gini))] # return split to the largest gini index
+            
